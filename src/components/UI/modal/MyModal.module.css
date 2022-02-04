@@ -1,14 +1,26 @@
-.myModal{
+.myModal {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     display: none;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.myModalContent {
+    background-color: white;
+    padding: 24px;
+    min-width: 250px;
+    border-radius: 8px;
 }
 
 .myModal.active {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.test {
+   background-color: aliceblue; 
 }

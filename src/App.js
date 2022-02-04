@@ -2,6 +2,9 @@ import React, {useState, useMemo} from 'react';
 import PostList from "./components/PostList";
 import PostForm from "./components/PostForm";
 import PostsFilter from "./components/PostsFilter";
+import MyModal from "./components/UI/modal/MyModal"
+import MyButton from "./components/UI/button/MyButton";
+
 //import MySelect from "./components/UI/select/MySelect";
 //import MyInput from "./components/UI/input/MyInput";
 import './styles/App.css';
@@ -19,6 +22,7 @@ function App() {
 
     const [selectedSort, setSelectedSort] = useState("title");
     const [searchQuery, setSearchQuery] = useState("");
+    const [modalVisibility, setModalVisibility] = useState(false);
 
     const sortedPosts = [...posts].sort((a,b) => a[filter.sort].localeCompare(b[filter.sort]));
 
@@ -28,6 +32,7 @@ function App() {
 
     function createPost(newPost){
         setPosts([...posts, newPost])
+        setModalVisibility(false);
     }
 
     function removePost(post){
@@ -37,7 +42,13 @@ function App() {
     return (
         <div className="App">
 
-            <PostForm create={createPost} />
+            <MyButton style={{marginTop: "24px"}} onClick={() => setModalVisibility(true)}>
+                Create Post
+            </MyButton>
+
+            <MyModal visible={modalVisibility} setVisible={setModalVisibility}>
+                <PostForm create={createPost} />
+            </MyModal>
 
             <hr style = {{margin: "16px"}}/>
 
